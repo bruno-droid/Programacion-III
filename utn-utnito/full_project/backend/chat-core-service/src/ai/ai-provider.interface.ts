@@ -6,6 +6,7 @@ export interface AiContextMessage {
 
 export interface GenerateReplyRequest {
   userId: string;
+  userDisplayName: string;
   conversationId: string;
   conversationTitle: string;
   latestUserMessage: string;

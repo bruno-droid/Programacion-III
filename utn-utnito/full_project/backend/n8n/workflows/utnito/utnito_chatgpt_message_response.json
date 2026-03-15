@@ -58,7 +58,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "const content = $json?.message?.content ?? $json?.content ?? $json?.text ?? '';\nlet assistantMessage = '';\n\nif (typeof content === 'string') {\n  assistantMessage = content;\n} else if (content && typeof content === 'object' && typeof content.assistantMessage === 'string') {\n  assistantMessage = content.assistantMessage;\n} else if (content) {\n  assistantMessage = JSON.stringify(content);\n}\n\nif (!assistantMessage || !assistantMessage.trim()) {\n  assistantMessage = 'I could not generate a response right now.';\n}\n\nreturn {\n  action: 'chatGPT_message_response',\n  error: false,\n  data: {\n    assistantMessage: assistantMessage.trim()\n  },\n  origin: 'n8n'\n};"
+        "jsCode": "const content = $json?.message?.content;\nlet parsedData;\n\ntry {\n  parsedData = typeof content === 'string' ? JSON.parse(content) : content;\n} catch (_error) {\n  throw new Error('Invalid AI response JSON');\n}\n\nconst assistantMessage = parsedData?.assistantMessage;\n\nif (typeof assistantMessage !== 'string' || !assistantMessage.trim()) {\n  throw new Error('assistantMessage is required');\n}\n\nreturn {\n  action: 'chatGPT_message_response',\n  error: false,\n  data: {\n    assistantMessage: assistantMessage.trim()\n  },\n  origin: 'n8n'\n};"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -67,12 +67,13 @@
         40
       ],
       "id": "013752f5-fcb4-4ad8-81d6-ed67352bf207",
-      "name": "Code - Format Success"
+      "name": "Code - Format Success",
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "const error = $json.error || $node[\"OpenAI - Generate Reply\"].error || {};\nconst errorMessage = error.message || 'Unknown error';\nconst errorDetails = error.stack || 'No stack trace available';\n\nconst workflowId = $workflow.id || 'unknown';\nconst executionId = $execution.id || 'unknown';\nconst lastNodeExecuted = $node[\"OpenAI - Generate Reply\"].error?.node || 'OpenAI - Generate Reply';\n\nconst inputData = $node[\"Webhook - Prompt Processing\"].json?.body || {};\n\nreturn {\n  action: 'chatGPT_message_response',\n  error: true,\n  data: {\n    workflowId: workflowId,\n    executionId: executionId,\n    lastNodeExecuted: lastNodeExecuted,\n    errorMessage: errorMessage,\n    errorDetails: errorDetails,\n    timestamp: new Date().toISOString(),\n    inputData: inputData\n  },\n  origin: 'n8n'\n};"
+        "jsCode": "const nodeError =\n  $node[\"Code - Format Success\"]?.error ||\n  $node[\"OpenAI - Generate Reply\"]?.error ||\n  {};\n\nconst itemError = $json?.error || {};\nconst mergedError = Object.keys(itemError).length ? itemError : nodeError;\n\nconst errorMessage = mergedError.message || 'Unknown error';\nconst errorDetails = mergedError.stack || 'No stack trace available';\n\nconst workflowId = $workflow.id || 'unknown';\nconst executionId = $execution.id || 'unknown';\nconst lastNodeExecuted = mergedError.node || 'unknown';\n\nconst inputData = $node[\"Webhook - Prompt Processing\"].json?.body || {};\n\nreturn {\n  action: 'chatGPT_message_response',\n  error: true,\n  data: {\n    workflowId,\n    executionId,\n    lastNodeExecuted,\n    errorMessage,\n    errorDetails,\n    timestamp: new Date().toISOString(),\n    inputData\n  },\n  origin: 'n8n'\n};"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -154,6 +155,13 @@
         [
           {
             "node": "Respond - Success",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code - Format Error",
             "type": "main",
             "index": 0
           }

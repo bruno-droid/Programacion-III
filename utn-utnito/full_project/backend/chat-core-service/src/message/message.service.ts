@@ -52,6 +52,7 @@ export class MessageService {
 
   async createMessage(
     userId: string,
+    userDisplayName: string,
     conversationId: string,
     request: CreateMessageRequest,
   ): Promise<CreateMessageResponse> {
@@ -80,6 +81,7 @@ export class MessageService {
 
     const assistantContent = await this.aiService.generateReply({
       userId,
+      userDisplayName,
       conversationId,
       conversationTitle: conversation.title,
       latestUserMessage: request.content.trim(),

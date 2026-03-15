@@ -19,7 +19,7 @@ import { environment } from '../../environments/environment';
 })
 export class ChatComponent implements OnInit {
   readonly messageRole = MessageRole;
-  readonly agentName = environment.chatTitle;
+  readonly agentName = environment.agentName;
   readonly agentVersion = environment.chatAgentVersion;
 
   currentUser: AuthUser | null = null;

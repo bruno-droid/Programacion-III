@@ -40,6 +40,7 @@ export class ChatGptAiProvider implements AiProvider {
       userMessage: request.latestUserMessage,
       context: {
         userId: request.userId,
+        userDisplayName: request.userDisplayName,
         conversationId: request.conversationId,
         conversationTitle: request.conversationTitle,
       },
