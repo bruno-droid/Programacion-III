@@ -151,15 +151,16 @@ You can run Ollama in two modes:
 ##### Option A: Ollama Docker
 
 1. Create local config file:
+   - `cp backend/n8n/.env.docker.example backend/n8n/.env.docker`
    - `cp backend/ollama/.env.docker.example backend/ollama/.env.docker`
-2. In `backend/ollama/.env.docker`, set:
+2. In `backend/n8n/.env.docker`, keep:
+   - `OLLAMA_BASE_URL=http://chat-ollama:11434`
+3. In `backend/ollama/.env.docker`, set:
    - `MODEL_NAME=llama3.2`
-3. Start optional Ollama container:
+4. Start optional Ollama container:
    - `docker compose --profile ollama up -d chat-ollama`
-4. Import workflow:
+5. Import workflow:
    - `backend/n8n/workflows/utnito/utnito_ollama_message_response.json`
-5. In n8n workflow (`HTTP Request - Ollama Generate Reply`), set URL:
-   - `http://chat-ollama:11434/api/generate`
 6. In `backend/chat-core-service/.env.docker`, set:
    - `AI_PROVIDER=ollama`
    - `AI_OLLAMA_MODEL=llama3.2`
@@ -170,20 +171,24 @@ You can run Ollama in two modes:
 
 1. Install and run Ollama on host machine (outside Docker).
 2. Ensure model exists locally (for example `llama3.2`).
-3. Import workflow:
+3. Create/update n8n env file:
+   - `cp backend/n8n/.env.docker.example backend/n8n/.env.docker`
+4. In `backend/n8n/.env.docker`, set:
+   - If n8n runs in Docker: `OLLAMA_BASE_URL=http://host.docker.internal:11434`
+   - If n8n runs locally: `OLLAMA_BASE_URL=http://localhost:11434`
+5. Import workflow:
    - `backend/n8n/workflows/utnito/utnito_ollama_message_response.json`
-4. In n8n workflow (`HTTP Request - Ollama Generate Reply`), set URL:
-   - If n8n runs in Docker: `http://host.docker.internal:11434/api/generate`
-   - If n8n runs locally: `http://localhost:11434/api/generate`
-5. In `backend/chat-core-service/.env.docker`, set:
+6. In `backend/chat-core-service/.env.docker`, set:
    - `AI_PROVIDER=ollama`
    - `AI_OLLAMA_MODEL=llama3.2`
    - `AI_N8N_OLLAMA_WEBHOOK_URL=http://chat-n8n:5678/webhook/utnito-ollama-prompt-processing`
-6. Restart backend service.
+7. Restart backend service.
 
 Note:
 - Keep `AI_OLLAMA_MODEL` aligned with the model available in Ollama.
 - `MODEL_NAME` in `backend/ollama/.env.docker` applies only to **Ollama Docker** mode.
+- `OLLAMA_BASE_URL` in `backend/n8n/.env.docker` defines whether n8n uses Docker Ollama or local host Ollama.
+- `backend/n8n/.env.docker` is local configuration and should not be committed.
 - If you need lower memory usage, you can use a smaller model (for example `llama3.2:1b`), but response quality may be lower.
 
 #### 5) Ollama LLMs (Suggested Models)
@@ -369,15 +374,16 @@ Podés usar Ollama en dos modos:
 ##### Opción A: Ollama Docker
 
 1. Crear archivo de configuración local:
+   - `cp backend/n8n/.env.docker.example backend/n8n/.env.docker`
    - `cp backend/ollama/.env.docker.example backend/ollama/.env.docker`
-2. En `backend/ollama/.env.docker`, definir:
+2. En `backend/n8n/.env.docker`, mantener:
+   - `OLLAMA_BASE_URL=http://chat-ollama:11434`
+3. En `backend/ollama/.env.docker`, definir:
    - `MODEL_NAME=llama3.2`
-3. Levantar contenedor opcional de Ollama:
+4. Levantar contenedor opcional de Ollama:
    - `docker compose --profile ollama up -d chat-ollama`
-4. Importar workflow:
+5. Importar workflow:
    - `backend/n8n/workflows/utnito/utnito_ollama_message_response.json`
-5. En el workflow de n8n (`HTTP Request - Ollama Generate Reply`), usar URL:
-   - `http://chat-ollama:11434/api/generate`
 6. En `backend/chat-core-service/.env.docker`, definir:
    - `AI_PROVIDER=ollama`
    - `AI_OLLAMA_MODEL=llama3.2`
@@ -388,20 +394,24 @@ Podés usar Ollama en dos modos:
 
 1. Instalar y ejecutar Ollama en la máquina host (fuera de Docker).
 2. Verificar que el modelo exista localmente (por ejemplo `llama3.2`).
-3. Importar workflow:
+3. Crear/actualizar archivo env de n8n:
+   - `cp backend/n8n/.env.docker.example backend/n8n/.env.docker`
+4. En `backend/n8n/.env.docker`, definir:
+   - Si n8n corre en Docker: `OLLAMA_BASE_URL=http://host.docker.internal:11434`
+   - Si n8n corre local: `OLLAMA_BASE_URL=http://localhost:11434`
+5. Importar workflow:
    - `backend/n8n/workflows/utnito/utnito_ollama_message_response.json`
-4. En el workflow de n8n (`HTTP Request - Ollama Generate Reply`), usar URL:
-   - Si n8n corre en Docker: `http://host.docker.internal:11434/api/generate`
-   - Si n8n corre local: `http://localhost:11434/api/generate`
-5. En `backend/chat-core-service/.env.docker`, definir:
+6. En `backend/chat-core-service/.env.docker`, definir:
    - `AI_PROVIDER=ollama`
    - `AI_OLLAMA_MODEL=llama3.2`
    - `AI_N8N_OLLAMA_WEBHOOK_URL=http://chat-n8n:5678/webhook/utnito-ollama-prompt-processing`
-6. Reiniciar el backend.
+7. Reiniciar el backend.
 
 Nota:
 - Mantené `AI_OLLAMA_MODEL` alineado con el modelo disponible en Ollama.
 - `MODEL_NAME` en `backend/ollama/.env.docker` aplica solo al modo **Ollama Docker**.
+- `OLLAMA_BASE_URL` en `backend/n8n/.env.docker` define si n8n usa Ollama Docker u Ollama local en host.
+- `backend/n8n/.env.docker` es configuración local y no se debe comitear.
 - Si necesitás menor consumo de memoria, podés usar un modelo más pequeño (por ejemplo `llama3.2:1b`), pero la calidad de respuesta puede ser menor.
 
 #### 5) Ollama LLMs (Modelos sugeridos)

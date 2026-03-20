@@ -5,3 +5,4 @@
 **/out-tsc
 chat-docker/.env
 backend/ollama/.env.docker
+backend/n8n/.env.docker
