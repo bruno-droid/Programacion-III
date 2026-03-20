@@ -207,7 +207,7 @@ MODEL_NAME=llama3.2
 AI_OLLAMA_MODEL=llama3.2
 ```
 
-##### Small models (recommended for students)
+##### Small models
 
 | Model | Params | Approx RAM | Quality vs Llama 3.2 3B | Best for | Env value |
 |---|---:|---:|---|---|---|
@@ -215,6 +215,7 @@ AI_OLLAMA_MODEL=llama3.2
 | `phi4-mini` | 3.8B | ~2.5-4 GB | Better (strong reasoning) | Coherent chat, instructions | `phi4-mini` |
 | `qwen2.5:3b` / `qwen3:4b` | 3B / 4B | ~1.9-3 GB | Equal or better (especially Spanish) | Natural Spanish conversation | `qwen2.5:3b` |
 | `gemma2:2b` | 2B | ~1.5-2.5 GB | Very good and fast | Maximum lightness | `gemma2:2b` |
+| `deepseek-r1:1.5b` | 1.5B | ~1-2 GB | Lower | Fast testing | `deepseek-r1:1.5b` |
 
 ##### Medium models (up to ~6 GB RAM)
 
@@ -225,6 +226,16 @@ AI_OLLAMA_MODEL=llama3.2
 | `mistral-small3:7b` | 7B | ~5.2-5.7 GB | ~45-55 t/s | Better in fluency | Fast chat, creative writing | `mistral-small3:7b` |
 | `phi4:8b` | ~8B | ~5.5-6.0 GB | ~30-40 t/s | Excellent reasoning | Complex instructions, education | `phi4:8b` |
 | `gemma3:9b` | 9B | ~6.0-6.5 GB | ~25-35 t/s | Very good | Higher quality if machine can handle it | `gemma3:9b` |
+
+##### Conversational models (medium usage vs `llama3.2:latest`)
+
+| Model | Usage vs `llama3.2:latest` | Conversational quality vs `llama3.2:latest` | Recommendation | Env value |
+|---|---|---|---|---|
+| `gpt-oss:20b` | Medium | Better | Recommended alternative | `gpt-oss:20b` |
+| `dolphin-mixtral:latest` | Medium | Better | Optional advanced | `dolphin-mixtral:latest` |
+| `llama3.1:8b` | Medium | Similar to better | Optional | `llama3.1:8b` |
+| `deepseek-r1:8b` | Medium | Similar to lower | Not recommended (`gpt-oss:20b` performed better) | `deepseek-r1:8b` |
+| `gemma3:27b` | High | Lower in these tests | Not recommended (`gpt-oss:20b` performed better) | `gemma3:27b` |
 
 \* Approximate values. They depend on hardware, context length, and prompt size.
 
@@ -430,7 +441,7 @@ MODEL_NAME=llama3.2
 AI_OLLAMA_MODEL=llama3.2
 ```
 
-##### Modelos pequeños (recomendados para estudiantes)
+##### Modelos pequeños
 
 | Modelo | Parámetros | RAM aprox. | Calidad vs Llama 3.2 3B | Mejor para | Valor en env |
 |---|---:|---:|---|---|---|
@@ -438,6 +449,7 @@ AI_OLLAMA_MODEL=llama3.2
 | `phi4-mini` | 3.8B | ~2.5-4 GB | Mejor (razonamiento fuerte) | Chat coherente, instrucciones | `phi4-mini` |
 | `qwen2.5:3b` / `qwen3:4b` | 3B / 4B | ~1.9-3 GB | Igual o superior (especialmente español) | Conversación natural en español | `qwen2.5:3b` |
 | `gemma2:2b` | 2B | ~1.5-2.5 GB | Muy buena y rápida | Máxima ligereza | `gemma2:2b` |
+| `deepseek-r1:1.5b` | 1.5B | ~1-2 GB | Menor | Testing rápido | `deepseek-r1:1.5b` |
 
 ##### Modelos medios (hasta ~6 GB RAM)
 
@@ -448,5 +460,15 @@ AI_OLLAMA_MODEL=llama3.2
 | `mistral-small3:7b` | 7B | ~5.2-5.7 GB | ~45-55 t/s | Superior en fluidez | Chat rápido, escritura creativa | `mistral-small3:7b` |
 | `phi4:8b` | ~8B | ~5.5-6.0 GB | ~30-40 t/s | Excelente razonamiento | Instrucciones complejas, educación | `phi4:8b` |
 | `gemma3:9b` | 9B | ~6.0-6.5 GB | ~25-35 t/s | Muy buena | Calidad alta si la máquina aguanta | `gemma3:9b` |
+
+##### Modelos conversacionales (consumo medio vs `llama3.2:latest`)
+
+| Modelo | Consumo vs `llama3.2:latest` | Calidad conversacional vs `llama3.2:latest` | Recomendación | Valor en env |
+|---|---|---|---|---|
+| `gpt-oss:20b` | Medio | Mejor | Alternativa recomendada | `gpt-oss:20b` |
+| `dolphin-mixtral:latest` | Medio | Mejor | Opcional avanzado | `dolphin-mixtral:latest` |
+| `llama3.1:8b` | Medio | Similar a mejor | Opcional | `llama3.1:8b` |
+| `deepseek-r1:8b` | Medio | Similar a menor | No recomendado (`gpt-oss:20b` funcionó mejor) | `deepseek-r1:8b` |
+| `gemma3:27b` | Alto | Menor en estas pruebas | No recomendado (`gpt-oss:20b` funcionó mejor) | `gemma3:27b` |
 
 \* Valores aproximados. Dependen del hardware, el contexto y el tamaño del prompt.
