@@ -19,6 +19,7 @@ Clases actuales:
 - [`class-04-javascript-fetch-basics`](./class-04-javascript-fetch-basics)
 - [`class-05-angular-migrate-login-chat`](./class-05-angular-migrate-login-chat)
 - [`class-06-angular-components-routing`](./class-06-angular-components-routing)
+- [`class-07-angular-binding-events-forms`](./class-07-angular-binding-events-forms)
 
 ## English
 
@@ -39,3 +40,4 @@ Current classes:
 - [`class-04-javascript-fetch-basics`](./class-04-javascript-fetch-basics)
 - [`class-05-angular-migrate-login-chat`](./class-05-angular-migrate-login-chat)
 - [`class-06-angular-components-routing`](./class-06-angular-components-routing)
+- [`class-07-angular-binding-events-forms`](./class-07-angular-binding-events-forms)
