@@ -31,7 +31,7 @@ This repository contains the practical course implementation for **Programacion 
 - [Frontend (ES)](#frontend-es)
 - [Backend (ES)](#backend-es)
 - [Docker (ES)](#docker-es)
-- [Ollama Guide](backend/ollama/README.md)
+- [Guia de Ollama](backend/ollama/README.md)
 
 <a id="architecture-en"></a>
 
