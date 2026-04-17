@@ -22,6 +22,7 @@ Clases actuales:
 - [`class-07-angular-binding-events-forms`](./class-07-angular-binding-events-forms)
 - [`class-08-angular-chat-local-state`](./class-08-angular-chat-local-state)
 - [`class-09-angular-services-models`](./class-09-angular-services-models)
+- [`class-10-angular-async-http`](./class-10-angular-async-http)
 
 ## English
 
@@ -45,3 +46,4 @@ Current classes:
 - [`class-07-angular-binding-events-forms`](./class-07-angular-binding-events-forms)
 - [`class-08-angular-chat-local-state`](./class-08-angular-chat-local-state)
 - [`class-09-angular-services-models`](./class-09-angular-services-models)
+- [`class-10-angular-async-http`](./class-10-angular-async-http)
