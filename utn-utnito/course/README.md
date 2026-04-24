@@ -24,6 +24,7 @@ Clases actuales:
 - [`class-09-angular-services-models`](./class-09-angular-services-models)
 - [`class-10-angular-async-http`](./class-10-angular-async-http)
 - [`class-11-api-contract-swagger-first`](./class-11-api-contract-swagger-first)
+- [`class-12-backend-mock-fast-nestjs`](./class-12-backend-mock-fast-nestjs)
 
 ## English
 
@@ -49,3 +50,4 @@ Current classes:
 - [`class-09-angular-services-models`](./class-09-angular-services-models)
 - [`class-10-angular-async-http`](./class-10-angular-async-http)
 - [`class-11-api-contract-swagger-first`](./class-11-api-contract-swagger-first)
+- [`class-12-backend-mock-fast-nestjs`](./class-12-backend-mock-fast-nestjs)
